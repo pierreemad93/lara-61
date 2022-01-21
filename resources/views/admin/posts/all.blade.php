@@ -1,29 +1,29 @@
 @extends('layouts.admin')
 @section('content')
-    <h1 class="text-center">All users </h1>
+    <h1 class="text-center">All posts </h1>
     <div class="container">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">title</th>
+                    <th scope="col">author</th>
                     <th scope="col">created_at</th>
                     <th scope="col">control</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($posts as $post)
                     <tr>
                         <th scope="row">1</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->author}}</td>
+                        <td>{{ $post->created_at }}</td>
                         <td class="d-flex">
-                        <a href="{{route('users.showposts' , $user->id)}}" class="btn btn-dark">posts</a>
-                          <a href="{{route('users.show' , $user->id)}}" class="btn btn-info">show</a>
-                          <a href="{{route('users.edit' , $user->id)}}" class="btn btn-warning">edit</a>
+                          <a href="{{route('posts.show' , $post->id)}}" class="btn btn-info">show</a>
+                          <a href="{{route('posts.edit' , $post->id)}}" class="btn btn-warning">edit</a>
                           {{-- <a href="" class="btn btn-danger">delete</a> --}}
-                          <form method="post" action="{{route('users.destroy' , $user->id)}}">
+                          <form method="post" action="{{route('posts.destroy' , $post->id)}}">
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-danger" value="Delete">
@@ -33,6 +33,6 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{route('users.create')}}" class="btn btn-primary">add user</a>
+        <a href="{{route('posts.create')}}" class="btn btn-primary">add post</a>
     </div>
 @endsection

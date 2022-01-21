@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Controllers\Admin\Trait\ShowPosts;
 
 
 
 class UsersController extends Controller
 {
+    use ShowPosts ;
     /**
      * Display a listing of the resource.
      *
@@ -119,4 +121,6 @@ class UsersController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
+    
 }
